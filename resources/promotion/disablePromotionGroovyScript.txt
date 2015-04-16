@@ -1,0 +1,21 @@
+/**************************************************************/
+/* DISABLE ALL PROMOTIONS									  */
+/**************************************************************/
+
+import de.hybris.platform.promotions.model.AbstractPromotionModel
+
+def flexibleSearchService = ctx.getBean "flexibleSearchService"
+def modelService = ctx.getBean "modelService"
+
+def promotion = new AbstractPromotionModel()
+promotion.enabled = true
+
+def updatedProducts = 0
+
+flexibleSearchService.getModelsByExample(promotion).each {
+    it.enabled = false
+    modelService.save it
+    updatedProducts++
+}
+
+return "Update completed, promotions disabled: ${updatedProducts}"

@@ -1,0 +1,7 @@
+INSERT_UPDATE LScoCustomer;uid[unique=true];brandLogin;title(code);name;sessionLanguage(isocode);sessionCurrency(isocode);groups(uid);Europe1PriceFactory_UPG(code);baseemail;customerid
+;levi-qa2014testautomation5@mailinator.com;levis;;JOHN QA;en_GB;GBP;dockerscommercegroup,customergroup,COUNTRY-GB,leviscommercegroup;GBprice;qa2014testautomation4@mailinator.com;12345678
+
+
+# Set passwords for sample customers
+INSERT_UPDATE LScoCustomer;uid[unique=true];passwordEncoding;password
+;levi-qa2014testautomation5@mailinator.com;levis;;123456Mb

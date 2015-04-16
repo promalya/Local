@@ -1,0 +1,22 @@
+/**************************************************************/
+/* UPDATE ALL PRODUCTS STOCK								  */
+/**************************************************************/
+
+import de.hybris.platform.ordersplitting.model.StockLevelModel;
+
+def flexibleSearchService = ctx.getBean "flexibleSearchService"
+def modelService = ctx.getBean "modelService"
+
+def sampleStockLevel = new StockLevelModel()
+def updatedProducts = 0
+
+for (i in 0..10) {
+	sampleStockLevel.available = i
+	flexibleSearchService.getModelsByExample(sampleStockLevel).each {
+		it.available = 200
+		modelService.save it
+		updatedProducts++
+	}
+}
+
+return "Update completed, stock levels updated: ${updatedProducts}"

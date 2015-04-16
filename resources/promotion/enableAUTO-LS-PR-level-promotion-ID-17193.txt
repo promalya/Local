@@ -1,0 +1,28 @@
+/**************************************************************/
+/* ENABLE ONE PARTICULAR PROMOTION							  */
+/**************************************************************/
+
+import de.hybris.platform.promotions.model.AbstractPromotionModel
+
+def flexibleSearchService = ctx.getBean "flexibleSearchService"
+def modelService = ctx.getBean "modelService"
+
+def promotion = new AbstractPromotionModel()
+promotion.code = "AUTO-LS-PR-level-promotion-ID-17193"
+
+def updatedPromotions = 0
+
+flexibleSearchService.getModelsByExample(promotion).each {
+    it.enabled = true
+    modelService.save it
+    updatedPromotions++
+}
+
+promotion.code = "AUTO-DS-PR-level-promotion-ID-17193"
+flexibleSearchService.getModelsByExample(promotion).each {
+    it.enabled = true
+    modelService.save it
+    updatedPromotions++
+}
+
+return "Update completed, promotion enabled: ${updatedPromotions}"

@@ -1,0 +1,20 @@
+/**************************************************************/
+/* ENABLE ONE PARTICULAR PROMOTION							  */
+/**************************************************************/
+
+import de.hybris.platform.promotions.model.AbstractPromotionModel
+
+def flexibleSearchService = ctx.getBean "flexibleSearchService"
+def modelService = ctx.getBean "modelService"
+
+def promotion = new AbstractPromotionModel()
+def updatedPromotions = 0
+
+promotion.code = "AUTO-LS-OR-threshold-fixed-discount-ID-17191"
+flexibleSearchService.getModelsByExample(promotion).each {
+    it.enabled = true
+    modelService.save it
+    updatedPromotions++
+}
+
+return "Update completed, promotion enabled: ${updatedPromotions}"
